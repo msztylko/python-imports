@@ -3,7 +3,7 @@ Exploration of the Python import system
 
 # [The import system](https://docs.python.org/3/reference/import.html)
 
-Importing - process by which Python code in one module gains access to the code in another module.
+**Importing** - process by which Python code in one module gains access to the code in another module.
 
 There are 3 main ways to perform import:
 1. `import` statement - the most common way
