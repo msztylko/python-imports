@@ -109,3 +109,33 @@ Importing `parent.one` will implicitly execute `parent/__init__.py` and `parent/
  
  ### Namespace packages
  It's there and more info [here](https://docs.python.org/3/reference/import.html#namespace-packages)
+ 
+ ## Searching
+To begin the search, Python needs the [fully qualified](https://docs.python.org/3/glossary.html#term-qualified-name) name of the module.
+
+### The module cache
+The first place checked during import search is `sys.module`. It serves as a cache of all modules that have been previously imported, including the intermediate paths.
+So if `foo.bar.baz` was previously imported, `sys.modules` will contain entries for `foo`, `foo.bar`, and `foo.bar.baz`. Each key will have as its value the corresponding module object.
+
+```python
+import sys
+import foo.bar.baz
+
+for k,v in sys.modules.items():
+    print(k,v)
+    
+...
+foo <module 'foo' from '/Users/marcin/code/python-imports/foo/__init__.py'>
+foo.bar <module 'foo.bar' from '/Users/marcin/code/python-imports/foo/bar/__init__.py'>
+foo.bar.baz <module 'foo.bar.baz' from '/Users/marcin/code/python-imports/foo/bar/baz/__init__.py'>
+```
+
+The import process is as follows:
+```mermaid
+flowchart TD;
+      A[check `sys.modules`] --> B[Is name present?];
+      B -- Yes --> C[What is the value?];
+      B -- No --> D[Continue search];
+      C -- module --> E[return the module];
+      C -- None --> F[raise `ModuleNotFoundError`];
+```
