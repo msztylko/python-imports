@@ -3,6 +3,8 @@ Exploration of the Python import system
 
 # [The import system](https://docs.python.org/3/reference/import.html)
 
+## Import basics
+
 **Importing** - process by which Python code in one module gains access to the code in another module.
 
 There are 3 main ways to perform import:
@@ -79,3 +81,31 @@ Traceback (most recent call last):
 NameError: name 're' is not defined
 ```
 Only local scope of function `func` is updated with variable `re`. We get a NameError when we try to access `re` from the global scope.
+
+## Packages
+Python has only one type of module object, and all modules are of this type, regardless of whether the module is implemented in Python, C, or something else.
+
+Packages roughly correspond to directories and modules to files, but it is not required that they originate in filesystem.
+
+All packages are modules, but not all modules are packages.  
+A module that contains a `__path__` attribute is considered a
+ package.
+ 
+ ### Regular packages
+ Typically implemented as a directory containing an `__init__.py` file. When a regular package is imported, this `__init__.py` file is implicitly executed
+ 
+ ```bash
+ parent/
+    __init__.py
+    one/
+        __init__.py
+    two/
+        __init__.py
+    three/
+        __init__.py
+```
+
+Importing `parent.one` will implicitly execute `parent/__init__.py` and `parent/one/__init__.py`. Subsequent imports of `parent.two` or `parent.three` will execute `parent/two/__init__.py` and `parent/three/__init__.py` respectively.
+ 
+ ### Namespace packages
+ It's there and more info [here](https://docs.python.org/3/reference/import.html#namespace-packages)
