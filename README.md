@@ -39,7 +39,7 @@ False
 True
 ```
 
-Conceptuallu, we may say that `import` statement performs 2 operations:
+Conceptually, we may say that `import` statement performs 2 operations:
 1. search for the named module.
 2. bind the result to a name in the local scope.
 
