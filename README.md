@@ -114,7 +114,7 @@ Importing `parent.one` will implicitly execute `parent/__init__.py` and `parent/
 To begin the search, Python needs the [fully qualified](https://docs.python.org/3/glossary.html#term-qualified-name) name of the module.
 
 ### The module cache
-The first place checked during import search is `sys.module`. It serves as a cache of all modules that have been previously imported, including the intermediate paths.
+The first place checked during import search is `sys.modules`. It serves as a cache of all modules that have been previously imported, including the intermediate paths.
 So if `foo.bar.baz` was previously imported, `sys.modules` will contain entries for `foo`, `foo.bar`, and `foo.bar.baz`. Each key will have as its value the corresponding module object.
 
 ```python
