@@ -6,4 +6,6 @@ Sometimes it's useful to execute code from the network and this is relatively ea
 3. [client.py](./client.py) - minimal client that requests source code from server.
 
 ## Next steps
-How can we modify client so that still gets source code from the network, but hidding this entire process behind `import source_code` ?
+How can we modify client so that still gets source code from the network, but hidding this entire process behind `import source_code` ?  
+* custom loader?
+* custom import hook?
