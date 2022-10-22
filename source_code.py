@@ -4,6 +4,6 @@ Typical python code
 
 import datetime
 
-current_date = datetime.utcnow()
+current_date = datetime.datetime.now()
 
 print(current_date)
