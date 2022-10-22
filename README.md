@@ -139,3 +139,31 @@ flowchart TD;
       C -- module --> E[return the module];
       C -- None --> F[raise `ModuleNotFoundError`];
 ```
+### Finders and loaders
+If the module is not found in `sys.modules` Python's import protocol is used to find and load the module. This protocol consists of:
+1. *finders* - determine whether it's possible to find the named module
+2. *loaders* - load module
+
+Object that implements both interfaces is know as *importer*
+
+Python provides a number of default importers, 3 most important:
+1. `_frozen_importlib.BuiltinImporter` - knows how to locate built-in modules
+2. `_frozen_importlib.FrozenImporter` - knows how to locate frozen modules.
+3. `_frozen_importlib_external.PathFinder` - default finder for import path.
+
+Finders do not load modules. If they can find the named module, they return *module spec*
+
+### Import hooks
+Primary mechanism for extending the import machinery.
+
+There are 2 types of import hooks:
+1. *meta hooks*
+2. *import path hooks*
+
+Meta hooks - called at the start of import processing
+* only `sys.modules` cache is checked before meta hooks
+* can override `sys.path`, frozen modules or build-ins.
+* are registered by adding new finder object to `sys.meta_path`
+
+Import path hooks - called as part of `sys.path` processing
+* are registered by adding new callables to `sys.path_hooks`
