@@ -181,3 +181,6 @@ If `sys.meta_path` processing reaches the end of its list without returning a sp
 
 ## Loading
 If a module spec is found, the import machinery will use it when loading the module. 
+
+## Replacing the standard import system
+The most reliable mechanism for replacing the entire import system is to delete the default contents of `sys.meta_path`, replacing them entirely with a custom meta path hook.
