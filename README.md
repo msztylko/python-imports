@@ -167,3 +167,17 @@ Meta hooks - called at the start of import processing
 
 Import path hooks - called as part of `sys.path` processing
 * are registered by adding new callables to `sys.path_hooks`
+
+### The meta path
+If the named module is not found in `sys.modules`, Python searches `sys.meta_path` which contains a list of meta path finder objects.
+Meta path finders must implement `find_spec()`, which takes 3 argumetns:
+1. a name
+2. an import path
+3. (optional) target module
+
+If meta path finder knows how to handle the named module, it returns a spec object, otherwise it returns `None`.
+
+If `sys.meta_path` processing reaches the end of its list without returning a spec, then a `ModuleNotFoundError` is raised.
+
+## Loading
+If a module spec is found, the import machinery will use it when loading the module. 
