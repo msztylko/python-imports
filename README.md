@@ -184,3 +184,6 @@ If a module spec is found, the import machinery will use it when loading the mod
 
 ## Replacing the standard import system
 The most reliable mechanism for replacing the entire import system is to delete the default contents of `sys.meta_path`, replacing them entirely with a custom meta path hook.
+
+## Import vs checking the spec
+Initially I thought that importing a module can be replaced with simply checking its spec. However,  `find_spec` can only help to decide if module is importable with no information if its content is importable as well. 
